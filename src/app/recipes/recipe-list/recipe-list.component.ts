@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent implements OnInit, OnDestroy {
 
   recipes: Recipe[];
   subscription: Subscription;
@@ -19,8 +19,7 @@ export class RecipeListComponent implements OnInit {
               private route: ActivatedRoute) { }
 
  ngOnInit() {
-    this.subscription = this.recipeService.recipesChanged
-      .subscribe(
+    this.subscription = this.recipeService.recipesChanged.subscribe(
         (recipes: Recipe[]) => {
           this.recipes = recipes;
         }
